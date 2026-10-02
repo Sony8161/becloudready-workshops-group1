@@ -1,0 +1,662 @@
+{
+  "passed": 131,
+  "total": 131,
+  "errors": [],
+  "results": [
+    {
+      "name": "login: forgot username link",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "login: forgot password link",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "login: show password reveals text",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "login: wrong password message",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "remember username saved",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "home: total shown",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "home: bell shows new alerts",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "home: security warns about failed sign-in",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "home: name in top bar",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "eye: balances hidden",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "eye: hidden remembered after reload",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "quick deposit selects Deposit tab",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "amount box focused",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "3 decimals blocked",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "review step shows amount",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "step pill says 2 of 2",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "deposit toast",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "total went up by $100",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "withdraw over balance blocked",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "over $1,000 needs CONFIRM (button disabled)",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "CONFIRM accepted (any case)",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "transfer toast names the payee",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "activity shows transfer at top",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "activity row shows payee name",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "recent recipient chip",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "name check: unknown number",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "name check: shows account holder",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "new-payee warning shows",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "quick amount $50",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "balance after shown",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "quick amount All = balance",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "must tick 'I know this person'",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "review marks new recipient",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "new payee transfer sent",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "paid before: no warning second time",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "API: 3 decimals rejected (400)",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "palette: quick item first",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "palette closed",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "palette filled Move money",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "statement drawer: opening/closing + lines",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "statement CSV downloaded",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "statement CSV has running balance",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "printable statement opens",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "palette: search activity item",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "activity search filled",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "activity filtered to 0003",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "chip filter deposits",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "date range: last month empty",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "date range: this month has rows",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "send again fills the form",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "receipt shows reference",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "receipt download",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "Escape closes drawer",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "copy account number toast",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "open savings toast",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "3 account cards",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "nickname saved",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "goal progress on card",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "nickname used in Move money",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "customer bell has new alerts",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "alerts list staff deposit",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "bell cleared after opening",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "strength meter shows",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "change pw: wrong current",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "change pw toast",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "new token stored",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "old token rejected (401)",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "new token works",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "still signed in after reload",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "sign out everywhere toast",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "other device kicked to login",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "other device told why",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "this device still signed in",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "security list: password changed + signed out everywhere",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "dark mode on",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "dark background",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "palette switches back to light",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "toggle button synced",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "username remembered on login page",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "phone: dark from system setting",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "phone: no sideways scroll",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "forgot username: generic message",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "forgot username: email printed with username",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "unknown email: SAME message (no enumeration)",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "forgot password: generic message",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "reset link printed in backend log",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "reset: weak password blocked",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "reset: success message on login",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "jane signs in with new password",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "jane's alerts: money received + password reset",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "reset link works only once",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "reset page without token",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "register: strength Strong",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "new customer: empty states",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "customer kept out of /admin",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "jane locked after 5 wrong (429)",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "KPI sign-in problems > 0",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "admin bell shows problems",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "customer search 'ja' -> Jane only",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "unlock toast",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "jane can sign in after unlock",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "temporary password shown once",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "jane signs in with temporary password",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "premium filter",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "username suggested from email",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "Ann signs in with her temporary password",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "teller name check",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "teller: no new-payee warning",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "staff note added",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "teller review says staff",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "teller deposit toast",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "drawer balance updated",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "feed filtered to Ann",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "teller deposit 'by admin' in feed",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "add customer toast",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "drawer opens for new customer",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "open checking from drawer",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "edit details",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "delete asks first",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "delete toast",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "drawer closed after delete",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "problems only filter",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "log shows staff actions",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "load more adds rows",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "feed transfers chip",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "feed pager next",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "admin palette finds Jane",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "palette opens Jane's drawer",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "audit CSV export",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "old admin link redirects to /admin",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "admin sent from /app to /admin",
+      "ok": true,
+      "info": ""
+    }
+  ]
+}

@@ -1,0 +1,409 @@
+{
+  "title": "Simple Bank frontend: test results",
+  "run_at": "2026-10-01T16:27:38+00:00",
+  "code_tested": {
+    "repo": "https://github.com/Sony8161/BankAPi-fast-api-mongodb",
+    "branch": "feature/react-frontend",
+    "commit": "8865651"
+  },
+  "environment": {
+    "frontend": "Your frontend/ code on the Vite dev server, http://localhost:5173",
+    "backend": "Your backend/ code (FastAPI) on http://127.0.0.1:8000",
+    "database": "An in-memory test database standing in for MongoDB Atlas (same queries; Atlas was not reachable from the test machine)",
+    "browser": "Chromium, automated with Playwright",
+    "sample_data": "John Doe (SAVINGS $1,500 + CHECKING $0), Ann Lee (no accounts), Joan Smith (SAVINGS $200)"
+  },
+  "summary": {
+    "total": 38,
+    "passed": 38,
+    "failed": 0
+  },
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "area": "Layout",
+      "test": "Welcome page",
+      "steps": "Open `http://localhost:5173`",
+      "expected": "\"Welcome to Simple Bank\", two cards (Customers, Search), the \"Simple Bank\" header, and a footer with the year",
+      "actual": "Heading \"Welcome to Simple Bank\"; cards ['Customers', 'Search']; header \"Simple Bank\"; footer \"© 2026 Simple Bank · React + FastAPI + MongoDB Atlas\"",
+      "status": "PASS",
+      "duration_ms": 335
+    },
+    {
+      "id": "TC-02",
+      "area": "Layout",
+      "test": "Navigation",
+      "steps": "Click Home, Customers, Search in the header",
+      "expected": "The page changes without a full reload; the current link is highlighted",
+      "actual": "Customers -> /customers (highlighted: Customers); Search -> /search (highlighted: Search); Home -> / (highlighted: Home); full page reload: no",
+      "status": "PASS",
+      "duration_ms": 361
+    },
+    {
+      "id": "TC-03",
+      "area": "Layout",
+      "test": "Feature card",
+      "steps": "On the Welcome page, click the Customers card",
+      "expected": "The Customers page opens",
+      "actual": "Opened /customers with heading \"Customers\"",
+      "status": "PASS",
+      "duration_ms": 156
+    },
+    {
+      "id": "TC-04",
+      "area": "Layout",
+      "test": "Unknown URL",
+      "steps": "Go to `/abc`",
+      "expected": "\"Page not found.\" with the header and footer still showing",
+      "actual": "\"Page not found.\" shown: True; header shown: True; footer shown: True",
+      "status": "PASS",
+      "duration_ms": 77
+    },
+    {
+      "id": "TC-05",
+      "area": "Layout",
+      "test": "Phone width",
+      "steps": "DevTools device toolbar, 375 px wide",
+      "expected": "The header wraps, tables scroll sideways, nothing is cut off",
+      "actual": "Page width 375px in a 375px screen (no sideways page scroll: True); table overflow-x: auto; header height 91px (wrapped onto 2 rows)",
+      "status": "PASS",
+      "duration_ms": 115
+    },
+    {
+      "id": "TC-06",
+      "area": "Customers",
+      "test": "Get all customers",
+      "steps": "Open Customers",
+      "expected": "Table lists John Doe, Ann Lee, Joan Smith (plus any older test data); the count matches the rows",
+      "actual": "Rows: ['John Doe', 'Ann Lee', 'Joan Smith']; count \"3 total\"",
+      "status": "PASS",
+      "duration_ms": 105
+    },
+    {
+      "id": "TC-07",
+      "area": "Customers",
+      "test": "Loading spinner",
+      "steps": "Network tab: set throttling to \"3G\", reload Customers",
+      "expected": "\"Loading customers...\" with a spinner, then the table",
+      "actual": "With 1.5 s network delay: \"Loading customers...\" and spinner shown: True; then the table appeared with 3 rows",
+      "status": "PASS",
+      "duration_ms": 1977,
+      "note": "Slow network simulated with Chrome DevTools throttling (1.5 s latency) instead of the \"3G\" preset."
+    },
+    {
+      "id": "TC-08",
+      "area": "Customers",
+      "test": "Backend down",
+      "steps": "Stop the backend (Ctrl+C), reload Customers",
+      "expected": "Red \"Cannot reach the server. Is the backend running on port 8000?\" with a Retry button",
+      "actual": "Red message \"Cannot reach the server. Is the backend running on port 8000?\"; Retry button shown: True",
+      "status": "PASS",
+      "duration_ms": 842,
+      "note": "Backend stopped by ending its process (same as Ctrl+C)."
+    },
+    {
+      "id": "TC-09",
+      "area": "Customers",
+      "test": "Retry",
+      "steps": "Start the backend again, click Retry",
+      "expected": "The message disappears and the table loads",
+      "actual": "Error gone: True; table loaded with ['John Doe', 'Ann Lee', 'Joan Smith']",
+      "status": "PASS",
+      "duration_ms": 610,
+      "note": "The test database starts empty after a restart, so the sample data was re-created before clicking Retry."
+    },
+    {
+      "id": "TC-10",
+      "area": "Add",
+      "test": "Add a customer",
+      "steps": "Name \"Mia Wong\", Email \"mia@example.com\", click Add customer",
+      "expected": "Green \"Added Mia Wong (ID n).\"; a new row at the bottom; the count goes up by 1; the inputs clear",
+      "actual": "Notice \"Added Mia Wong (ID 4).\"; last row \"Mia Wong\"; rows 3 -> 4 (\"4 total\"); inputs cleared: True; POST status 200",
+      "status": "PASS",
+      "duration_ms": 213
+    },
+    {
+      "id": "TC-11",
+      "area": "Add",
+      "test": "Empty fields",
+      "steps": "Leave both empty, click Add customer",
+      "expected": "\"Name and email are required.\"; no request in the Network tab",
+      "actual": "Message \"Name and email are required.\"; POST requests sent: 0",
+      "status": "PASS",
+      "duration_ms": 556
+    },
+    {
+      "id": "TC-12",
+      "area": "Add",
+      "test": "Spaces only",
+      "steps": "Name and Email of only spaces, click Add customer",
+      "expected": "The same message (spaces are trimmed)",
+      "actual": "Message \"Name and email are required.\"; POST requests sent: 0",
+      "status": "PASS",
+      "duration_ms": 570
+    },
+    {
+      "id": "TC-13",
+      "area": "Add",
+      "test": "Bad email format",
+      "steps": "Email \"abc\", click Add customer",
+      "expected": "The browser blocks it with its own email warning",
+      "actual": "Browser marked the email invalid: True (\"Please include an '@' in the email address. 'abc' is missing an '@'.\"); POST requests sent: 0",
+      "status": "PASS",
+      "duration_ms": 593
+    },
+    {
+      "id": "TC-14",
+      "area": "Add",
+      "test": "Saved in the database",
+      "steps": "After TC-10, reload the page",
+      "expected": "Mia Wong is still listed (and visible in Atlas)",
+      "actual": "After reload, Mia Wong listed: True; present in the database (GET /api/customers): True",
+      "status": "PASS",
+      "duration_ms": 130,
+      "note": "Atlas check replaced by GET /api/customers on the test database."
+    },
+    {
+      "id": "TC-15",
+      "area": "Delete",
+      "test": "Cancel delete",
+      "steps": "Click Delete on Mia Wong, then Cancel",
+      "expected": "Nothing changes; no DELETE request",
+      "actual": "Confirm box said \"Delete Mia Wong and all their accounts?\"; clicked Cancel; rows unchanged: True; DELETE requests: 0",
+      "status": "PASS",
+      "duration_ms": 659
+    },
+    {
+      "id": "TC-16",
+      "area": "Delete",
+      "test": "Confirm delete",
+      "steps": "Click Delete on Mia Wong, then OK",
+      "expected": "Green \"Deleted Mia Wong.\"; the row is gone; the count goes down by 1",
+      "actual": "Notice \"Deleted Mia Wong.\"; Mia Wong still listed: False; rows 4 -> 3; DELETE status 204",
+      "status": "PASS",
+      "duration_ms": 54
+    },
+    {
+      "id": "TC-17",
+      "area": "Detail",
+      "test": "Customer with accounts",
+      "steps": "Click View on John Doe",
+      "expected": "Heading \"John Doe\", ID and email, and an accounts table: SAVINGS $1,500.00 and CHECKING $0.00",
+      "actual": "Heading \"John Doe\"; details ['ID: 1', 'Email: john@example.com']; account rows ['1 SAVINGS $1,500.00', '2 CHECKING $0.00']",
+      "status": "PASS",
+      "duration_ms": 258
+    },
+    {
+      "id": "TC-18",
+      "area": "Detail",
+      "test": "Customer with 0 accounts",
+      "steps": "Click View on Ann Lee",
+      "expected": "\"This customer has no accounts yet.\"",
+      "actual": "Shown: \"This customer has no accounts yet.\"",
+      "status": "PASS",
+      "duration_ms": 217
+    },
+    {
+      "id": "TC-19",
+      "area": "Detail",
+      "test": "Unknown id",
+      "steps": "Go to `/customers/99999`",
+      "expected": "Red \"Customer not found\" with Retry",
+      "actual": "Red message \"Customer not found\"; Retry shown: True",
+      "status": "PASS",
+      "duration_ms": 117
+    },
+    {
+      "id": "TC-20",
+      "area": "Detail",
+      "test": "Id that isn't a number",
+      "steps": "Go to `/customers/abc`",
+      "expected": "Red message from the API: \"Input should be a valid integer...\"",
+      "actual": "Red message \"Input should be a valid integer, unable to parse string as an integer\"",
+      "status": "PASS",
+      "duration_ms": 117
+    },
+    {
+      "id": "TC-21",
+      "area": "Detail",
+      "test": "Back link",
+      "steps": "Click \"← Back to customers\"",
+      "expected": "Returns to the customer list",
+      "actual": "Went to /customers",
+      "status": "PASS",
+      "duration_ms": 32
+    },
+    {
+      "id": "TC-22",
+      "area": "Search",
+      "test": "Name starts with",
+      "steps": "Find by name: \"jo\", click Search",
+      "expected": "Heading 'Name starts with \"jo\"': John Doe and Joan Smith",
+      "actual": "Heading \"Name starts with \"jo\"\"; results ['Joan Smith', 'John Doe']",
+      "status": "PASS",
+      "duration_ms": 208
+    },
+    {
+      "id": "TC-23",
+      "area": "Search",
+      "test": "Ignores case",
+      "steps": "Search \"JO\"",
+      "expected": "The same two customers",
+      "actual": "Results ['Joan Smith', 'John Doe']",
+      "status": "PASS",
+      "duration_ms": 652
+    },
+    {
+      "id": "TC-24",
+      "area": "Search",
+      "test": "Start of name only",
+      "steps": "Search \"doe\"",
+      "expected": "\"No customers match.\" (the search matches the start of the name)",
+      "actual": "Shown: \"No customers match.\"",
+      "status": "PASS",
+      "duration_ms": 88
+    },
+    {
+      "id": "TC-25",
+      "area": "Search",
+      "test": "No match",
+      "steps": "Search \"zz\"",
+      "expected": "\"No customers match.\"",
+      "actual": "Shown: \"No customers match.\"",
+      "status": "PASS",
+      "duration_ms": 664
+    },
+    {
+      "id": "TC-26",
+      "area": "Search",
+      "test": "Empty box",
+      "steps": "Clear the box, click Search",
+      "expected": "Nothing happens; no request",
+      "actual": "Search requests sent: 0; screen unchanged (still \"No customers match.\")",
+      "status": "PASS",
+      "duration_ms": 653
+    },
+    {
+      "id": "TC-27",
+      "area": "Search",
+      "test": "Special characters",
+      "steps": "Search \"(\"",
+      "expected": "\"No customers match.\" and no error (the backend escapes it)",
+      "actual": "Shown: \"No customers match.\"; error shown: False; API status 200",
+      "status": "PASS",
+      "duration_ms": 665
+    },
+    {
+      "id": "TC-28",
+      "area": "Search",
+      "test": "No delete in results",
+      "steps": "Look at the result rows",
+      "expected": "Only View links, no Delete buttons",
+      "actual": "Delete buttons in results: 0; View links: 2",
+      "status": "PASS",
+      "duration_ms": 663
+    },
+    {
+      "id": "TC-29",
+      "area": "Filter",
+      "test": "Premium at 1000",
+      "steps": "Min balance 1000, click Filter",
+      "expected": "\"Customers with an account of $1000 or more\": John Doe only",
+      "actual": "Heading \"Customers with an account of $1000 or more\"; results ['John Doe']",
+      "status": "PASS",
+      "duration_ms": 656
+    },
+    {
+      "id": "TC-30",
+      "area": "Filter",
+      "test": "Exactly the threshold",
+      "steps": "Min balance 1500, click Filter",
+      "expected": "John Doe (the rule is \"at or above\")",
+      "actual": "Heading \"Customers with an account of $1500 or more\"; results ['John Doe']",
+      "status": "PASS",
+      "duration_ms": 666
+    },
+    {
+      "id": "TC-31",
+      "area": "Filter",
+      "test": "Threshold 0",
+      "steps": "Min balance 0, click Filter",
+      "expected": "John Doe and Joan Smith; not Ann Lee, who has no accounts",
+      "actual": "Heading \"Customers with an account of $0 or more\"; results ['Joan Smith', 'John Doe']",
+      "status": "PASS",
+      "duration_ms": 669
+    },
+    {
+      "id": "TC-32",
+      "area": "Filter",
+      "test": "Too high",
+      "steps": "Min balance 999999, click Filter",
+      "expected": "\"No customers match.\"",
+      "actual": "Shown: \"No customers match.\"",
+      "status": "PASS",
+      "duration_ms": 660
+    },
+    {
+      "id": "TC-33",
+      "area": "Filter",
+      "test": "Negative",
+      "steps": "Min balance -5, click Filter",
+      "expected": "The browser refuses it (minimum is 0); no request is sent",
+      "actual": "Browser marked -5 invalid: True (\"Value must be greater than or equal to 0.\"); requests sent: 0",
+      "status": "PASS",
+      "duration_ms": 670
+    },
+    {
+      "id": "TC-34",
+      "area": "Search",
+      "test": "Backend down",
+      "steps": "Stop the backend, run a search",
+      "expected": "Red \"Cannot reach the server...\"; earlier results are cleared",
+      "actual": "Before: 2 results; after stopping the backend: red \"Cannot reach the server. Is the backend running on port 8000?\"; result tables on screen: 0",
+      "status": "PASS",
+      "duration_ms": 1986,
+      "note": "Backend restarted and sample data re-created afterwards."
+    },
+    {
+      "id": "TC-35",
+      "area": "Network",
+      "test": "Request reaches the API",
+      "steps": "Network tab, reload Customers, click the `customers` request",
+      "expected": "`GET http://127.0.0.1:8000/api/customers`, status 200; Preview shows the JSON list",
+      "actual": "GET http://127.0.0.1:8000/api/customers -> 200; JSON list of 3 customers, first: {\"name\": \"John Doe\", \"email\": \"john@example.com\", \"id\": 1}",
+      "status": "PASS",
+      "duration_ms": 157
+    },
+    {
+      "id": "TC-36",
+      "area": "Network",
+      "test": "CORS header",
+      "steps": "The same request, Headers section",
+      "expected": "Response header `access-control-allow-origin: http://localhost:5173`",
+      "actual": "access-control-allow-origin: http://localhost:5173",
+      "status": "PASS",
+      "duration_ms": 0
+    },
+    {
+      "id": "TC-37",
+      "area": "Network",
+      "test": "Preflight",
+      "steps": "Add a customer and watch the Network tab",
+      "expected": "An `OPTIONS` request, then `POST /api/customers` with status 200",
+      "actual": "Backend log: ['OPTIONS /api/customers HTTP/1.1 -> 200 OK', 'POST /api/customers HTTP/1.1 -> 200 OK']; browser saw POST status 200",
+      "status": "PASS",
+      "duration_ms": 996,
+      "note": "Chrome hides preflight requests from automation, so the OPTIONS request was read from the backend's access log. Run in a fresh browser window because Chrome caches a preflight for 10 minutes (CORSMiddleware max_age=600)."
+    },
+    {
+      "id": "TC-38",
+      "area": "Network",
+      "test": "React to DB",
+      "steps": "Add a customer in Swagger, then refresh the React Customers page",
+      "expected": "The new customer appears in React",
+      "actual": "Created \"Swagger User\" directly through the API, then reloaded: listed in React: True",
+      "status": "PASS",
+      "duration_ms": 130
+    }
+  ]
+}

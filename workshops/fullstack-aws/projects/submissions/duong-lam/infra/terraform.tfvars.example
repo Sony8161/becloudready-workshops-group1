@@ -1,0 +1,10 @@
+# Copy this file to terraform.tfvars (git-ignored) and fill it in. Never commit terraform.tfvars.
+
+# Required: your Atlas connection string (the same one as MONGODB_URI in backend/.env)
+mongodb_uri = "mongodb+srv://USER:PASSWORD@cluster0.xxxxx.mongodb.net/?retryWrites=true&w=majority"
+
+# Optional (these are the defaults)
+# name_prefix     = "duonglam-simplebank"
+# mongodb_db      = "banking_prod"
+# admin_username  = "admin"
+# lambda_role_arn = "arn:aws:iam::279249498881:role/quicklabs-fullstack-aws-28sep-batch-a-lambda-exec"

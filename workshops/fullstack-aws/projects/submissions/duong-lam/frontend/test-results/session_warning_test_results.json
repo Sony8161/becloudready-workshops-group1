@@ -1,0 +1,47 @@
+{
+  "passed": 8,
+  "total": 8,
+  "errors": [],
+  "results": [
+    {
+      "name": "no warning while plenty of time left",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "warning appears ~2 min before expiry",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "countdown shown",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "Stay signed in has focus",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "token refreshed",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "warning gone",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "still on the page",
+      "ok": true,
+      "info": ""
+    },
+    {
+      "name": "Sign out from the warning",
+      "ok": true,
+      "info": ""
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+# Copy this file to terraform.tfvars (git-ignored) and fill in your values. Never commit terraform.tfvars.
+
+# Required
+mongodb_uri  = "mongodb+srv://USER:PASSWORD@cluster0.xxxxx.mongodb.net/?retryWrites=true&w=majority"
+budget_email = "you@example.com"
+
+# Optional (these are the defaults)
+# region             = "us-east-1"
+# instance_type      = "t3.micro"
+# mongodb_db         = "banking_prod"
+# github_repo        = "Sony8161/BankAPi-fast-api-mongodb"
+# deploy_branch      = "main"
+# monthly_budget_usd = 10

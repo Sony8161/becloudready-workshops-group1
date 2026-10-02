@@ -1,0 +1,67 @@
+#!/bin/bash
+# Runs ONCE, as root, the first time the EC2 server boots (cloud-init).
+# Terraform fills in the $${name} placeholders. Log of this run on the server: /var/log/cloud-init-output.log
+set -euxo pipefail
+
+# 1) Docker
+dnf install -y docker
+systemctl enable --now docker
+
+# 2) The deploy script. GitHub Actions runs it through SSM Run Command on every deploy.
+mkdir -p /opt/simplebank
+cat > /opt/simplebank/deploy.sh <<'DEPLOY'
+#!/bin/bash
+# Pulls the newest API image from ECR and (re)starts the container.
+# By hand (in an SSM session):  sudo /opt/simplebank/deploy.sh
+set -euo pipefail
+umask 077   # files created here (the settings file) are readable by root only
+
+REGION="${region}"
+REGISTRY="${registry}"
+IMAGE="${image}"
+PARAM_PATH="${param_path}"
+LOG_GROUP="${log_group}"
+NAME="simplebank-api"
+
+echo "== Pulling $IMAGE"
+aws ecr get-login-password --region "$REGION" | docker login --username AWS --password-stdin "$REGISTRY"
+docker pull "$IMAGE"
+
+echo "== Reading app settings from SSM Parameter Store ($PARAM_PATH)"
+# /simplebank/JWT_SECRET  <tab>  value   ->   JWT_SECRET=value
+aws ssm get-parameters-by-path --region "$REGION" --path "$PARAM_PATH" --with-decryption \
+  --query "Parameters[].[Name,Value]" --output text \
+  | awk -F '\t' '{ key = $1; sub(".*/", "", key); print key "=" $2 }' > /opt/simplebank/app.env.new
+mv /opt/simplebank/app.env.new /opt/simplebank/app.env
+
+echo "== Restarting the container"
+docker rm -f "$NAME" >/dev/null 2>&1 || true
+docker run -d --name "$NAME" --restart unless-stopped \
+  -p 80:8000 \
+  --env-file /opt/simplebank/app.env \
+  --log-driver awslogs \
+  --log-opt awslogs-region="$REGION" \
+  --log-opt awslogs-group="$LOG_GROUP" \
+  "$IMAGE"
+
+echo "== Waiting for /api/health"
+for attempt in $(seq 1 30); do
+  if curl -fsS --max-time 5 http://localhost/api/health; then
+    echo
+    echo "== Deployed: the API is up and can reach MongoDB."
+    docker image prune -f >/dev/null   # delete old images so the disk doesn't fill up
+    exit 0
+  fi
+  sleep 3
+done
+
+echo "== The API did not become healthy. Last log lines:"
+docker logs --tail 40 "$NAME" || true
+echo "Hint: if the log says it can't reach MongoDB, add this server's IP in Atlas > Network Access."
+exit 1
+DEPLOY
+chmod 700 /opt/simplebank/deploy.sh
+
+# 3) First start. On a brand-new setup no image has been pushed yet, so this can fail:
+#    the first GitHub Actions deploy (or infra-ec2/deploy-from-pc.ps1) starts the app.
+/opt/simplebank/deploy.sh || echo "No image yet: the first deploy will start the API."

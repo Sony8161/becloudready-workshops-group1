@@ -1,0 +1,8 @@
+# Files Docker must NOT copy into the image
+.env
+__pycache__/
+*.pyc
+*.postman_collection.json
+test_mongo.py
+Dockerfile
+.dockerignore

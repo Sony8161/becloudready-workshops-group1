@@ -1,0 +1,24 @@
+# The whole app in Docker on your PC (Docker Desktop must be running):
+#   docker compose up --build -d     start (rebuilds images if code changed)
+#   docker compose logs -f api       watch the backend log (dev-mode emails print here)
+#   docker compose down              stop
+# Then open http://localhost:8080   (Swagger: http://localhost:8000/docs)
+# Stop the normal uvicorn / npm run dev first, or ports 8000 / 8080 may already be in use.
+services:
+  api:
+    build: ./backend
+    env_file: ./backend/.env            # MONGODB_URI, JWT_SECRET... the same file as local dev
+    environment:
+      FRONTEND_URL: http://localhost:8080   # reset-password links point at the Docker website
+    ports:
+      - "8000:8000"                     # optional: lets you open Swagger at /docs
+    restart: unless-stopped
+
+  web:
+    build: ./frontend
+    ports:
+      - "8080:80"                       # your PC's port 8080 -> nginx's port 80 in the container
+    depends_on:
+      api:
+        condition: service_healthy      # wait until the API's HEALTHCHECK passes
+    restart: unless-stopped

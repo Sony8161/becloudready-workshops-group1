@@ -1,0 +1,30 @@
+{
+  "version": "2.0",
+  "routeKey": "ANY /api/{proxy+}",
+  "rawPath": "/api/health",
+  "rawQueryString": "",
+  "headers": {
+    "host": "console-test.execute-api.us-east-1.amazonaws.com",
+    "user-agent": "lambda-console-test"
+  },
+  "requestContext": {
+    "accountId": "000000000000",
+    "apiId": "console-test",
+    "domainName": "console-test.execute-api.us-east-1.amazonaws.com",
+    "domainPrefix": "console-test",
+    "http": {
+      "method": "GET",
+      "path": "/api/health",
+      "protocol": "HTTP/1.1",
+      "sourceIp": "203.0.113.7",
+      "userAgent": "lambda-console-test"
+    },
+    "requestId": "console-test",
+    "routeKey": "ANY /api/{proxy+}",
+    "stage": "$default",
+    "time": "02/Oct/2026:12:00:00 +0000",
+    "timeEpoch": 1790942400000
+  },
+  "pathParameters": { "proxy": "health" },
+  "isBase64Encoded": false
+}
