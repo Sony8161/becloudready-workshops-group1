@@ -1,0 +1,9 @@
+fastapi>=0.115
+uvicorn[standard]>=0.30
+pymongo>=4.8
+pydantic[email]>=2.7
+PyJWT>=2.8
+bcrypt>=4.1
+python-dotenv>=1.0
+mangum>=0.17
+mongomock>=4.1   # only for the in-memory dev mode and tests
