@@ -1,0 +1,36 @@
+# Credential and secret files — never commit these from student submissions.
+# Scoped to workshops/fullstack-aws/projects/ so it covers every submission folder.
+
+# Credential handouts / rosters (AWS console passwords, access keys)
+*.csv
+
+# Environment files (API keys, DB passwords, tokens)
+.env
+.env.*
+!.env.example
+!.env.sample
+
+# Terraform state and variable files (contain provisioned secrets / outputs)
+*.tfstate
+*.tfstate.*
+*.tfvars
+!*.tfvars.example
+.terraform/
+crash.log
+
+# Keys and certificates
+*.pem
+*.key
+*.ppk
+id_rsa
+id_rsa.*
+
+# AWS / cloud credential files
+credentials
+aws_credentials
+.aws/
+
+# Generic secret files
+secrets.json
+*secret*.json
+*.secret
