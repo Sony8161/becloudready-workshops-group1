@@ -1,0 +1,8 @@
+# What the Lambda zip needs (no uvicorn, no mongomock: Lambda talks to Atlas).
+fastapi>=0.115
+pymongo>=4.8   # includes dnspython for mongodb+srv:// URIs
+pydantic[email]>=2.7
+PyJWT>=2.8
+bcrypt>=4.1
+python-dotenv>=1.0
+mangum>=0.17
