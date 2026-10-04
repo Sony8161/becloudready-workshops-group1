@@ -4,11 +4,11 @@ Friday Weekend Challenge, project 02. A full-stack platform that replaces scatte
 
 | Member | Area |
 |---|---|
-| Member1 | |
-| Member2 | |
-| Member3 | |
-| Member4 | |
-|Gabriel Rodriguez | Traineee screens, AWS Deploy, docs |
+| Duong Lam | Backend foundation, sign-in, HR onboarding |
+| Connor Sheldon | Cohorts, plans, notices, reports, dashboard, tests, Postman |
+| Jaden Edwards | React app shell, sign-in and layout |
+| Eric Mitchell | HR and manager screens |
+| Gabriel Rodriguez | Trainee screens, AWS deploy, docs |
 
 ## What it solves
 
